@@ -16,8 +16,9 @@ public class Lwjgl3Launcher {
 
 	private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
 		Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
-		configuration.setTitle("gdx-liftoff-ui-test");
-		configuration.setWindowedMode(640, 480);
+		configuration.setTitle("gdx-liftoff");
+		configuration.setWindowedMode(600, 700);
+		configuration.setWindowSizeLimits(200, 300, -1, -1);
 		configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
 		return configuration;
 	}
