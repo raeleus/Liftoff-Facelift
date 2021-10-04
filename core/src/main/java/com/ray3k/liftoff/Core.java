@@ -7,20 +7,24 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
+import space.earlygrey.shapedrawer.ShapeDrawer;
 
 public class Core extends ApplicationAdapter {
     public static Stage stage;
     public static Skin skin;
+    public static ShapeDrawer shapeDrawer;
     
     @Override
     public void create() {
-        skin = new Skin();
+        skin = new Skin(Gdx.files.internal("ui/skin.json"));
+        
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-    
-        Table root = new Table();
-        root.setFillParent(true);
-        stage.addActor(root);
+        
+        shapeDrawer = new ShapeDrawer(stage.getBatch(), skin.getRegion("white-pixel"));
+        
+        IntroTable introTable = new IntroTable();
+        stage.addActor(introTable);
     }
     
     @Override
