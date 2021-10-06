@@ -14,7 +14,8 @@ import space.earlygrey.shapedrawer.ShapeDrawer;
 import space.earlygrey.shapedrawer.scene2d.ShapeDrawerDrawable;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-import static com.ray3k.liftoff.Core.*;
+import static com.ray3k.liftoff.Core.skin;
+import static com.ray3k.liftoff.Core.stage;
 
 public class IntroTable extends Table {
     private final static Color color = new Color(204f/255f, 0, 0, 1);
@@ -104,7 +105,11 @@ public class IntroTable extends Table {
                                 moveToAligned(gdxTarget2x, gdxTarget2y, Align.center, 1f, Interpolation.pow3In)),
                         targeting(imageLiftoff,
                                 moveToAligned(liftoffTarget2x, liftoffTarget2y, Align.center, 1f,
-                                        Interpolation.pow3In)))));
+                                        Interpolation.pow3In))),
+                run(() -> {
+                    LandingTable landingTable = new LandingTable();
+                    stage.addActor(landingTable);
+                }), Actions.removeActor()));
     }
     
     private static class AnimationDrawable extends ShapeDrawerDrawable {

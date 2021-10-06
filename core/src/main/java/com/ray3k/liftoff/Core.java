@@ -10,23 +10,25 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.ray3k.stripe.FreeTypeSkin;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
 public class Core extends ApplicationAdapter {
     public static Stage stage;
-    public static Skin skin;
+    public static FreeTypeSkin skin;
     public static ShapeDrawer shapeDrawer;
     
     @Override
     public void create() {
-        skin = new Skin(Gdx.files.internal("ui/skin.json"));
+        skin = new FreeTypeSkin(Gdx.files.internal("ui/skin.json"));
         
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         
         shapeDrawer = new ShapeDrawer(stage.getBatch(), skin.getRegion("white-pixel"));
-        
-        
+    
+        IntroTable introTable = new IntroTable();
+        stage.addActor(introTable);
     }
     
     @Override
@@ -41,11 +43,6 @@ public class Core extends ApplicationAdapter {
         
         stage.act();
         stage.draw();
-        
-        if (Gdx.input.isButtonJustPressed(Buttons.LEFT)) {
-            IntroTable introTable = new IntroTable();
-            stage.addActor(introTable);
-        }
     }
     
     @Override
